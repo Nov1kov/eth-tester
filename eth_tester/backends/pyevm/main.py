@@ -606,6 +606,10 @@ class PyEVMBackend(BaseChainBackend):
 
         for ancestor in ancestors:
             base_fee_per_gas.append(ancestor.header.base_fee_per_gas)
+            # TODO base fee per gas items must be one more
+            # BASEFEEPERGAS - An array of block base fees per gas.
+            # This includes the next block after the newest of the returned range, because this value can
+            # be derived from the newest block. Zeroes are returned for pre-EIP-1559 blocks.
             gas_used_ratio.append(ancestor.header.gas_used / ancestor.header.gas_limit)
 
         return {
